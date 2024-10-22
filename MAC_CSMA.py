@@ -7,6 +7,8 @@ def log(line):
     if DEBUG:
         print(line)
 
+p = 0.1
+
 class Node:
 
     def __init__(self, _id, transmission_time, packet_generation_period, initial_offset):
@@ -26,12 +28,21 @@ class Node:
             'total_packets': 0,
         }
 
-    def update_time(self, step):
+    def update_time(self, step, channel_busy):
         # If backoff is over, start transmitting the earliest unsent packet
         if self.time_till_backed_off_packet is not None and self.time_till_backed_off_packet == 0:
-            log(f"[Node {self.id}] Transmitting backed off packet!")
-            self.start_transmitting()
-            self.time_till_backed_off_packet = None
+
+            # Models waiting for channel to be idle
+            if channel_busy:
+                self.time_till_backed_off_packet = 1
+            else:
+                if self.can_send():
+                    log(f"[Node {self.id}] Transmitting backed off packet!")
+                    self.start_transmitting()
+                    self.time_till_backed_off_packet = None
+                else:
+                    # Models waiting for packet worst case propagation delay
+                    self.time_till_backed_off_packet = 1
 
         # Successful transmission
         if self.transmitting and self.time_till_transmission_end == 0:
@@ -51,11 +62,17 @@ class Node:
             self.statistics['total_packets'] += 1
 
             # If currently backing off, dont try to send yet
-            if not self.transmitting and self.time_till_backed_off_packet is None:
-                log(f"[Node {self.id}] Sending newly generated packet")
-                self.start_transmitting()
+            if channel_busy:
+                self.time_till_backed_off_packet = 1
             else:
-                log(f"[Node {self.id}] Queueing newly generated packet ...")
+                if not self.transmitting and self.time_till_backed_off_packet is None:
+                    if self.can_send():
+                        log(f"[Node {self.id}] Sending newly generated packet")
+                        self.start_transmitting()
+                    else:
+                        self.time_till_backed_off_packet = 1
+                else:
+                    log(f"[Node {self.id}] Queueing newly generated packet ...")
 
 
         if self.transmitting:
@@ -85,6 +102,13 @@ class Node:
 
             log(f"[Node {self.id}] Decreased backoff to {self.backoff}")
 
+    def can_send(self):
+        ptry = random.random()
+
+        log(f"[Node {self.id}] Generated random number {ptry} < {p}: {ptry < p}")
+
+        return ptry < p
+
     def is_transmitting(self):
         return self.transmitting
 
@@ -103,8 +127,11 @@ class Simulator:
             self.step(self.time_step)
 
     def step(self, step):
+
+        channel_busy = any(filter(lambda n: n.is_transmitting(), self.nodes))
+
         for n in self.nodes:
-            n.update_time(step)
+            n.update_time(step, channel_busy)
 
         transmitting_nodes = [n for n in self.nodes if n.is_transmitting()]
 
@@ -136,9 +163,6 @@ for packet_size in range(1, 11):
     s = Simulator([
         Node(0, packet_size, 20, 0),
         Node(1, packet_size, 20, 0),
-        Node(2, packet_size, 20, 0),
-        Node(3, packet_size, 20, 0),
-        Node(4, packet_size, 20, 0),
     ], 1)
 
     s.run(time_steps)
