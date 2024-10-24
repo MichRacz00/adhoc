@@ -34,6 +34,19 @@ class Message:
 class GatewayAck:
     gateway_id: int
 
+@dataclass(
+    msg_id=4
+)
+class AdvertiseNeighbours:
+    cluster_head: int
+    neighbours: str
+
+@dataclass(
+    msg_id=5
+)
+class RoutingUpdate:
+    routing_table: str
+
 class ClusterHeadAlgorithm(DistributedAlgorithm):
 
     cluster_heads = [1, 3, 7]
@@ -41,19 +54,27 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
     def __init__(self, settings: CommunitySettings) -> None:
         super().__init__(settings)
 
+        self.printing_suffix = ""
         self.is_cluster_head = False
         self.is_gateway = False
 
         self.connected_heads = []
         self.connected_gateways = []
 
+        self.routing_table = {}
+
         # Make sure the register the message handlers for each message type
         self.add_message_handler(ClusterHello, self.on_hello)
         self.add_message_handler(GatewayAck, self.on_gateway_ack)
+        self.add_message_handler(AdvertiseNeighbours, self.on_advertise_neighbours)
+        self.add_message_handler(RoutingUpdate, self.on_routing_update)
 
     async def on_start(self):
         self.is_cluster_head = self.node_id in ClusterHeadAlgorithm.cluster_heads
-
+        self.printing_suffix = f"__ {self.node_id}"
+        if self.is_cluster_head:
+            self.printing_suffix = f"CH {self.node_id}"
+            
         # await asyncio.sleep(random.uniform(1.0, 3.0))
 
         if self.is_cluster_head:
@@ -69,11 +90,12 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
         if (peer, payload.cluster_head) not in self.connected_heads:
             self.connected_heads.append((peer, payload.cluster_head))
 
-        print(f"{self.node_id}: Received cluster hello from {payload.cluster_head}")
+        print(f"{self.printing_suffix}: Received cluster hello from {payload.cluster_head}")
 
         if len(self.connected_heads) > 1:
             self.is_gateway = True
-            print(f"{self.node_id}: I have become a gateway. My connected heads: {[x[1] for x in self.connected_heads]}")
+            self.printing_suffix = f"GW {self.node_id}"
+            print(f"{self.printing_suffix}: I have become a GW. My connected heads: {[x[1] for x in self.connected_heads]}")
 
             # Send a message to all connected heads saying I have become a gateway for them
             for cluster_head_peer, _ in self.connected_heads:
@@ -86,36 +108,41 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
 
         if (peer, payload.gateway_id) not in self.connected_gateways:
             self.connected_gateways.append((peer, payload.gateway_id))
-            print(f"{self.node_id}: As a cluster head I am aware of the following gateways: {[x[1] for x in self.connected_gateways]}")
+            print(f"{self.printing_suffix}: Gateways: {[x[1] for x in self.connected_gateways]}")
 
-"""
-    @message_wrapper(TerminationMessage)
-    async def on_terminate(self, peer: Peer, _: TerminationMessage) -> None:
-        if self.running:
-            _next_node_id, next_peer = [x for x in self.nodes.items() if x[1] != peer][0]
-            self.ez_send(next_peer, TerminationMessage())
-            self.running = False
-            self.stop()
+        # As a cluster head we want to send a message to all gateways informing them of all connected nodes
+        for gateway_peer, _ in self.connected_gateways:
+            self.ez_send(gateway_peer, AdvertiseNeighbours(self.node_id, str([x[0] for x in self.nodes.items()])))
+            
+    @message_wrapper(AdvertiseNeighbours)
+    async def on_advertise_neighbours(self, peer: Peer, payload: AdvertiseNeighbours) -> None:
+        if not self.is_gateway:
+            return
 
-    @message_wrapper(ElectionMessage)
-    async def on_message(self, peer: Peer, payload: ElectionMessage) -> None:
-        self.running = True
-        # Sending it around the ring to the other peer we received it from.
-        next_node_id, next_peer = [x for x in self.nodes.items() if x[1] != peer][0]
-        print(f'[Node {self.node_id}] Got a message from with elector id: {payload.elector}')
+        #print(f"{self.node_id}: Received AN message from: {payload.cluster_head}, with: {payload.neighbours}")
 
-        received_id = payload.elector
+        # Update routing table
 
-        if received_id == self.node_id:
-            # We are elected
-            print(f'[Node {self.node_id}] we are elected!')
-            print(f'[Node {self.node_id}] Sending message to terminate the algorithm!')
+        if payload.cluster_head not in self.routing_table:
+            self.routing_table[payload.cluster_head] = set(eval(payload.neighbours))
+        else:
+            self.routing_table[payload.cluster_head].union(eval(payload.neighbours))
 
-            self.ez_send(next_peer, TerminationMessage())
-        elif received_id < self.node_id:
-            # Send self.node_id along
-            self.ez_send(next_peer, ElectionMessage(self.node_id))
-        else:  # received_id > self.node_id
-            # Send received_id along
-            self.ez_send(next_peer, ElectionMessage(received_id))
-"""
+        print(f"{self.printing_suffix}: Updated routing table: {self.routing_table}")
+
+        # Send routing update to all connected heads, except for the one from which you received the AN message
+        for peer_head, id_head in self.connected_heads:
+            if peer_head is peer: 
+                continue
+
+            self.ez_send(peer_head, RoutingUpdate(str(self.routing_table)))
+
+    @message_wrapper(RoutingUpdate)
+    async def on_routing_update(self, peer: Peer, payload: RoutingUpdate) -> None:
+        incoming_rt = eval(payload.routing_table)
+        
+        incoming_rt.pop(self.node_id, None)
+        print(f"{self.printing_suffix}: RU before update: {self.routing_table}")
+        self.routing_table = {**self.routing_table, **incoming_rt}
+        print(f"{self.printing_suffix}: RU after update: {self.routing_table}")
+        
