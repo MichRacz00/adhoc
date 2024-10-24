@@ -52,6 +52,6 @@ if __name__ == '__main__':
             yaml.safe_dump(content, f2)
             print(f'Output written to docker-compose.yml')
 
-        with open(args.topology_file, 'w') as f3:
-            yaml.safe_dump(connections, f3)
-            print(f'Output written to {args.topology_file}')
+        # with open(args.topology_file, 'w') as f3:
+        #     yaml.safe_dump(connections, f3)
+        #     print(f'Output written to {args.topology_file}')

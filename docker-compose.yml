@@ -10,10 +10,10 @@ services:
   node0:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 0
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.10
@@ -22,10 +22,10 @@ services:
   node1:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 1
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.11
@@ -34,10 +34,10 @@ services:
   node2:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 2
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.12
@@ -46,10 +46,10 @@ services:
   node3:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 3
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.13
@@ -58,10 +58,10 @@ services:
   node4:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 4
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.14
@@ -70,10 +70,10 @@ services:
   node5:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 5
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.15
@@ -82,10 +82,10 @@ services:
   node6:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 6
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.16
@@ -94,10 +94,10 @@ services:
   node7:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 7
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.17
@@ -106,10 +106,10 @@ services:
   node8:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 8
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.18
@@ -118,10 +118,10 @@ services:
   node9:
     build: .
     environment:
-      ALGORITHM: dolev
+      ALGORITHM: cluster
       EMPTY: null
       PID: 9
-      TOPOLOGY: topologies/communication.yaml
+      TOPOLOGY: topologies/cluster.yaml
     networks:
       vpcbr:
         ipv4_address: 192.168.55.19
@@ -130,4 +130,4 @@ services:
 version: '3.7'
 x-common-variables:
   EMPTY: null
-  TOPOLOGY: topologies/communication.yaml
+  TOPOLOGY: topologies/cluster.yaml

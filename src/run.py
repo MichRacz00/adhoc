@@ -6,6 +6,7 @@ from ipv8.util import create_event_with_signals
 from ipv8_service import IPv8
 from algorithms import *
 from dolev import Dolev
+from cluster import ClusterHeadAlgorithm
 #from src.da_types import DistributedAlgorithm
 
 
@@ -14,6 +15,7 @@ def get_algorithm(name: str) -> DistributedAlgorithm:
         'echo': EchoAlgorithm,
         'election': RingElection,
         'dolev': Dolev,
+        'cluster': ClusterHeadAlgorithm
     }
     if name not in algorithms.keys():
         raise Exception(f'Cannot find select algorithm with name {name}')
