@@ -83,6 +83,8 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
             peers = [x for x in self.nodes.items()]
             # print(f"{self.node_id}: I am a cluster head and sending hello to {[id._next_node_id for id in peers]}")
 
+            self.routing_table[self.node_id] = set([x[0] for x in self.nodes.items()])
+            print(f"{self.printing_suffix}: Initial routing table: {self.routing_table}")
             for next_peer in peers:
                 self.ez_send(next_peer[1], ClusterHello(self.node_id))
 
@@ -129,6 +131,7 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
         if payload.cluster_head not in self.routing_table:
             self.routing_table[payload.cluster_head] = set(eval(payload.neighbours))
         else:
+
             self.routing_table[payload.cluster_head].update(eval(payload.neighbours))
 
         print(f"{self.printing_suffix}: AN message from {payload.cluster_head}. Updated routing table: {self.routing_table}")
@@ -142,24 +145,49 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
 
     @message_wrapper(RoutingUpdate)
     async def on_routing_update(self, peer: Peer, payload: RoutingUpdate) -> None:
+        if not self.is_cluster_head and not self.is_gateway:
+            return
+
         incoming_rt = eval(payload.routing_table)
         
         incoming_rt.pop(self.node_id, None)
-        print(f"{self.printing_suffix}: RU from {payload.sender}, RT before update: {self.routing_table}")
+        # print(f"{self.printing_suffix}: RU from {payload.sender}, RT before update: {self.routing_table}")
         
         new_entry = set()
         new_entry.add(payload.sender)
         for key, values in incoming_rt.items():
             new_entry.add(key)
-            print(f"{self.printing_suffix}: RU from {payload.sender}, TEST {key}: {values}")
+            # print(f"{self.printing_suffix}: RU from {payload.sender}, TEST {key}: {values}")
             new_entry.update(values)
         
+        if payload.sender in self.routing_table and self.routing_table[payload.sender] is new_entry:
+            # We already got the latest information!
+            print(f"{self.printing_suffix}: RU from {payload.sender}, but new entry is the same! So, ignoring.")
+            return
+
         self.routing_table[payload.sender] = new_entry
-        print(f"{self.printing_suffix}: RU adding to RT: {new_entry}")
         # self.routing_table = {**self.routing_table, **incoming_rt}
-        print(f"{self.printing_suffix}: RU after update: {self.routing_table}")
+        print(f"{self.printing_suffix}: RU from {payload.sender}, adding to RT: {new_entry}, after update: {self.routing_table}")
 
         # For all gateways send another advertise neighbours message
-        # print(f"{self.printing_suffix}: Sending routing table: {str(self.routing_table)} to {[x[1] for x in self.connected_gateways]}")
+        #print(f"{self.printing_suffix}: Sending routing table: {str(self.routing_table)} to {[x[1] for x in self.connected_gateways]}")
+        # print(f"{self.printing_suffix}: RU from {payload.sender}, Known gateways: {self.connected_gateways}")
         # for gateway_peer, _ in self.connected_gateways:
-            # self.ez_send(gateway_peer, AdvertiseNeighbours(self.node_id, str([x[0] for x in self.routing_table])))
+
+        if self.is_gateway:
+            for head_peer, _ in self.connected_heads:
+                if head_peer is peer: continue
+
+                self.ez_send(head_peer, RoutingUpdate(self.node_id, str(self.routing_table)))
+        
+        if self.is_cluster_head:
+            for gateway_peer, _ in self.connected_gateways:
+                if gateway_peer is peer: continue
+                
+                self.ez_send(gateway_peer, RoutingUpdate(self.node_id, str(self.routing_table)))
+
+        # for _, next_peer in self.nodes.items():
+        #     if next_peer is peer: 
+        #         continue
+
+        #     self.ez_send(peer, RoutingUpdate(self.node_id, str(self.routing_table)))
