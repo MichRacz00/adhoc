@@ -45,6 +45,7 @@ class AdvertiseNeighbours:
     msg_id=5
 )
 class RoutingUpdate:
+    sender: int
     routing_table: str
 
 class ClusterHeadAlgorithm(DistributedAlgorithm):
@@ -104,6 +105,7 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
     @message_wrapper(GatewayAck)
     async def on_gateway_ack(self, peer: Peer, payload: GatewayAck) -> None:
         if not self.is_cluster_head: 
+            print(f"{self.printing_suffix}: I'm not a cluster head, but for some reason I got a GW ACK message from {payload.gateway_id}...")
             return
 
         if (peer, payload.gateway_id) not in self.connected_gateways:
@@ -117,6 +119,7 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
     @message_wrapper(AdvertiseNeighbours)
     async def on_advertise_neighbours(self, peer: Peer, payload: AdvertiseNeighbours) -> None:
         if not self.is_gateway:
+            print(f"{self.printing_suffix}: I'm not a GW, but somehow I got a AN message from {payload.sender}...")
             return
 
         #print(f"{self.node_id}: Received AN message from: {payload.cluster_head}, with: {payload.neighbours}")
@@ -126,23 +129,37 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
         if payload.cluster_head not in self.routing_table:
             self.routing_table[payload.cluster_head] = set(eval(payload.neighbours))
         else:
-            self.routing_table[payload.cluster_head].union(eval(payload.neighbours))
+            self.routing_table[payload.cluster_head].update(eval(payload.neighbours))
 
-        print(f"{self.printing_suffix}: Updated routing table: {self.routing_table}")
+        print(f"{self.printing_suffix}: AN message from {payload.cluster_head}. Updated routing table: {self.routing_table}")
 
         # Send routing update to all connected heads, except for the one from which you received the AN message
         for peer_head, id_head in self.connected_heads:
             if peer_head is peer: 
                 continue
 
-            self.ez_send(peer_head, RoutingUpdate(str(self.routing_table)))
+            self.ez_send(peer_head, RoutingUpdate(self.node_id, str(self.routing_table)))
 
     @message_wrapper(RoutingUpdate)
     async def on_routing_update(self, peer: Peer, payload: RoutingUpdate) -> None:
         incoming_rt = eval(payload.routing_table)
         
         incoming_rt.pop(self.node_id, None)
-        print(f"{self.printing_suffix}: RU before update: {self.routing_table}")
-        self.routing_table = {**self.routing_table, **incoming_rt}
-        print(f"{self.printing_suffix}: RU after update: {self.routing_table}")
+        print(f"{self.printing_suffix}: RU from {payload.sender}, RT before update: {self.routing_table}")
         
+        new_entry = set()
+        new_entry.add(payload.sender)
+        for key, values in incoming_rt.items():
+            new_entry.add(key)
+            print(f"{self.printing_suffix}: RU from {payload.sender}, TEST {key}: {values}")
+            new_entry.update(values)
+        
+        self.routing_table[payload.sender] = new_entry
+        print(f"{self.printing_suffix}: RU adding to RT: {new_entry}")
+        # self.routing_table = {**self.routing_table, **incoming_rt}
+        print(f"{self.printing_suffix}: RU after update: {self.routing_table}")
+
+        # For all gateways send another advertise neighbours message
+        # print(f"{self.printing_suffix}: Sending routing table: {str(self.routing_table)} to {[x[1] for x in self.connected_gateways]}")
+        # for gateway_peer, _ in self.connected_gateways:
+            # self.ez_send(gateway_peer, AdvertiseNeighbours(self.node_id, str([x[0] for x in self.routing_table])))
