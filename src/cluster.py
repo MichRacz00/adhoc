@@ -24,9 +24,10 @@ class ClusterHello:
 @dataclass(
     msg_id=2
 )
-class Message:
+class DataMessage:
     sender: int
     destination: int
+    data: str
 
 @dataclass(
     msg_id=3
@@ -50,7 +51,21 @@ class RoutingUpdate:
 
 class ClusterHeadAlgorithm(DistributedAlgorithm):
 
-    cluster_heads = [1, 3, 7]
+    #cluster_heads = [1, 3, 7]
+
+    # Cluster heads and messages for the cluster_string topology
+    cluster_heads = [0, 3, 6, 9]
+    messages = [
+        DataMessage(1, 7, "Testcase RR: 1 to 7"), #
+        DataMessage(1, 8, "Testcase RG: 1 to 8"), #
+        DataMessage(1, 9, "Testcase RC: 1 to 9"), #
+        DataMessage(5, 4, "Testcase GR: 5 to 4"), #
+        DataMessage(8, 2, "Testcase GG: 8 to 7"), #
+        DataMessage(5, 0, "Testcase GC: 5 to 0"), #
+        DataMessage(3, 10, "Testcase CR: 3 to 10"), #
+        DataMessage(3, 8, "Testcase CG: 3 to 8"),
+        DataMessage(0, 6, "Testcase CC: 0 to 6"), #
+    ]
 
     def __init__(self, settings: CommunitySettings) -> None:
         super().__init__(settings)
@@ -69,6 +84,7 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
         self.add_message_handler(GatewayAck, self.on_gateway_ack)
         self.add_message_handler(AdvertiseNeighbours, self.on_advertise_neighbours)
         self.add_message_handler(RoutingUpdate, self.on_routing_update)
+        self.add_message_handler(DataMessage, self.on_data_message)
 
     async def on_start(self):
         self.is_cluster_head = self.node_id in ClusterHeadAlgorithm.cluster_heads
@@ -77,16 +93,47 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
             self.printing_suffix = f"CH {self.node_id}"
             
         # await asyncio.sleep(random.uniform(1.0, 3.0))
+        #self.routing_table[self.node_id] = set([x[0] for x in self.nodes.items()])
+
 
         if self.is_cluster_head:
             # Send ping message to determine gateways -> when node receives more than 2 pings it becomes a gateway
             peers = [x for x in self.nodes.items()]
             # print(f"{self.node_id}: I am a cluster head and sending hello to {[id._next_node_id for id in peers]}")
-
+            
+            # As a cluster head we want to initialise our routing table with all nodes in our cluster
             self.routing_table[self.node_id] = set([x[0] for x in self.nodes.items()])
             print(f"{self.printing_suffix}: Initial routing table: {self.routing_table}")
+            
             for next_peer in peers:
                 self.ez_send(next_peer[1], ClusterHello(self.node_id))
+
+        await asyncio.sleep(random.uniform(10.0, 15.0))
+
+        for message in ClusterHeadAlgorithm.messages:
+            if self.node_id is message.sender:
+                print(f"{self.printing_suffix}: I should send a message to {message.destination}")
+                if self.is_cluster_head:
+                    if message.destination in [x[0] for x in self.nodes.items()]:
+                    # Destination is in the current cluster, so simply send it to them!
+                        id, peer = [x for x in self.nodes.items() if x[0] is message.destination][0]
+                        print(f"{self.printing_suffix}: Sending message to {id} destined for {message.destination}")
+                        self.ez_send(peer, message)
+                        return
+                    
+                    for key_id, value in self.routing_table.items():
+                        if message.destination in value:
+                            key_peer = [x[1] for x in self.nodes.items() if x[0] is key_id][0]
+                            print(f"{self.printing_suffix}: Sending message to {key_id} destined for {message.destination}")
+                            self.ez_send(key_peer, message)
+                            return
+                        
+                    # Uh oh, not found in the routing table?
+                    print(f"\033[31m{self.printing_suffix}: Message for {message.destination} could not be send. Routing table: {self.routing_table}\033[31m")
+                    return
+
+                print(f"{self.printing_suffix}: Forwarding message to {self.connected_heads[0][1]} destined for {message.destination}")
+                self.ez_send(self.connected_heads[0][0], message)
 
     @message_wrapper(ClusterHello)
     async def on_hello(self, peer: Peer, payload: ClusterHello) -> None:
@@ -94,6 +141,9 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
             self.connected_heads.append((peer, payload.cluster_head))
 
         print(f"{self.printing_suffix}: Received cluster hello from {payload.cluster_head}")
+        
+        # self.routing_table[self.node_id] = set([x[0] for x in self.nodes.items()])
+        # self.routing_table[payload.cluster_head] 
 
         if len(self.connected_heads) > 1:
             self.is_gateway = True
@@ -160,7 +210,7 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
             # print(f"{self.printing_suffix}: RU from {payload.sender}, TEST {key}: {values}")
             new_entry.update(values)
         
-        if payload.sender in self.routing_table and self.routing_table[payload.sender] is new_entry:
+        if payload.sender in self.routing_table and self.routing_table[payload.sender] == new_entry:
             # We already got the latest information!
             print(f"{self.printing_suffix}: RU from {payload.sender}, but new entry is the same! So, ignoring.")
             return
@@ -191,3 +241,28 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
         #         continue
 
         #     self.ez_send(peer, RoutingUpdate(self.node_id, str(self.routing_table)))
+    
+    @message_wrapper(DataMessage)
+    async def on_data_message(self, peer: Peer, payload: DataMessage) -> None:
+        if self.node_id is payload.destination:
+            # Yaay, we got a message
+            print(f"{self.printing_suffix}: Yaay, got a message from {payload.sender}. Data: {payload.data}")
+            return
+        
+        if self.is_cluster_head:
+            if payload.destination in [x[0] for x in self.nodes.items()]:
+                # Destination is in the current cluster, so simply send it to them!
+                id, peer = [x for x in self.nodes.items() if x[0] is payload.destination][0]
+                print(f"{self.printing_suffix}: Sending message to {id} destined for {payload.destination}")
+                self.ez_send(peer, payload)
+                return
+
+        for key_id, value in self.routing_table.items():
+            if payload.destination in value or payload.destination is key_id:
+                key_peer = [x[1] for x in self.nodes.items() if x[0] is key_id][0]
+                print(f"{self.printing_suffix}: Forwarding message to {key_id} destined for {payload.destination}")
+                self.ez_send(key_peer, payload)
+                return
+
+        # Destination not found, send error back?
+        print(f"\033[31m{self.printing_suffix}: Trying to send message, but could not find destination {payload.destination}.\033[31m")

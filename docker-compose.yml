@@ -127,6 +127,18 @@ services:
         ipv4_address: 192.168.55.19
     ports:
     - 9099:9099
+  node10:
+    build: .
+    environment:
+      ALGORITHM: cluster
+      EMPTY: null
+      PID: 10
+      TOPOLOGY: topologies/cluster.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.55.20
+    ports:
+    - 9100:9100
 version: '3.7'
 x-common-variables:
   EMPTY: null
