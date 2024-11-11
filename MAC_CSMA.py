@@ -1,5 +1,6 @@
 import random
 import sys
+import itertools as it
 
 DEBUG = False
 
@@ -7,11 +8,9 @@ def log(line):
     if DEBUG:
         print(line)
 
-p = 0.1
-
 class Node:
 
-    def __init__(self, _id, transmission_time, packet_generation_period, initial_offset):
+    def __init__(self, _id, transmission_time, packet_generation_period, initial_offset, p):
         self.id = _id
         self.transmitting = False
         self.transmission_time = transmission_time
@@ -20,6 +19,8 @@ class Node:
         self.time_till_periodic_packet = initial_offset
         self.time_till_backed_off_packet = None
         self.time_till_transmission_end = 0
+
+        self.p = p
 
         self.queued_messages = 0
 
@@ -105,9 +106,9 @@ class Node:
     def can_send(self):
         ptry = random.random()
 
-        log(f"[Node {self.id}] Generated random number {ptry} < {p}: {ptry < p}")
+        log(f"[Node {self.id}] Generated random number {ptry} < {self.p}: {ptry < self.p}")
 
-        return ptry < p
+        return ptry < self.p
 
     def is_transmitting(self):
         return self.transmitting
@@ -145,9 +146,13 @@ class Simulator:
 
         return False
 
-    def show_statistics(self):
-        for n in self.nodes:
-            print(f'[Statistic][Node {n.id}] Successfully transmitted packets: {n.statistics['successful_packets']}/{n.statistics['total_packets']}')
+    def show_statistics(self, f):
+        # for n in self.nodes:
+        #     print(f'[Statistic][Node {n.id}] Successfully transmitted packets: {n.statistics['successful_packets']}/{n.statistics['total_packets']}', file=f)
+
+        print(f"""[Statistic] Total transmitted packets: """
+              f"""{sum([n.statistics['successful_packets'] for n in self.nodes])}/"""
+              f"""{sum([n.statistics['total_packets'] for n in self.nodes])}""", file=f)
 
 time_steps = int(sys.argv[1])
 
@@ -157,18 +162,25 @@ try:
 except:
     pass
 
-runs = dict()
+N = [2, 5, 10, 20, 30, 40, 50]
+GEN_PERIOD = [5, 10, 25, 50]
+PS = [1]
+P = [1, 0.9, 0.75, 0.5, 0.2, 0.1, 0.01, 0.001]
 
-for packet_size in range(1, 11):
-    s = Simulator([
-        Node(0, packet_size, 20, 0),
-        Node(1, packet_size, 20, 0),
-    ], 1)
+with open('MAC_results.txt', 'w') as f:
 
-    s.run(time_steps)
+    for (n, gen_period, ps, p) in it.product(N, GEN_PERIOD, PS, P):
 
-    runs[packet_size] = s
+        s = Simulator([Node(i, ps, gen_period, 0, p) for i in range(n)], 1)
+        s.run(time_steps)
 
-for (ps, s) in runs.items():
-    print(f"Simulator with packet size {ps}:")
-    s.show_statistics()
+        print(f"Simulator with n={n} gen_period={gen_period} packet_size={ps} p={p}...")
+        print(f"Simulator with n={n} gen_period={gen_period} packet_size={ps} p={p}:", file=f)
+
+        print(f"n * p {'>' if n * p >= 1 else '<'} 1")
+        print(f"n * p {'>' if n * p >= 1 else '<'} 1", file=f)
+
+        s.show_statistics(f)
+
+        print()
+        print(file=f)

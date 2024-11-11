@@ -1,0 +1,896 @@
+Simulator with n=2 gen_period=5 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 3982/4000
+
+Simulator with n=2 gen_period=5 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 4000/4000
+
+Simulator with n=2 gen_period=5 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 3994/4000
+
+Simulator with n=2 gen_period=5 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 3999/4000
+
+Simulator with n=2 gen_period=5 packet_size=1 p=0.2:
+n * p < 1
+[Statistic] Total transmitted packets: 3996/4000
+
+Simulator with n=2 gen_period=5 packet_size=1 p=0.1:
+n * p < 1
+[Statistic] Total transmitted packets: 3996/4000
+
+Simulator with n=2 gen_period=5 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 3924/4000
+
+Simulator with n=2 gen_period=5 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 3730/4000
+
+Simulator with n=2 gen_period=10 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 2000/2000
+
+Simulator with n=2 gen_period=10 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 2000/2000
+
+Simulator with n=2 gen_period=10 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 2001/2000
+
+Simulator with n=2 gen_period=10 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 2001/2000
+
+Simulator with n=2 gen_period=10 packet_size=1 p=0.2:
+n * p < 1
+[Statistic] Total transmitted packets: 2000/2000
+
+Simulator with n=2 gen_period=10 packet_size=1 p=0.1:
+n * p < 1
+[Statistic] Total transmitted packets: 1998/2000
+
+Simulator with n=2 gen_period=10 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 1958/2000
+
+Simulator with n=2 gen_period=10 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 1864/2000
+
+Simulator with n=2 gen_period=25 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 800/800
+
+Simulator with n=2 gen_period=25 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 800/800
+
+Simulator with n=2 gen_period=25 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 800/800
+
+Simulator with n=2 gen_period=25 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 800/800
+
+Simulator with n=2 gen_period=25 packet_size=1 p=0.2:
+n * p < 1
+[Statistic] Total transmitted packets: 800/800
+
+Simulator with n=2 gen_period=25 packet_size=1 p=0.1:
+n * p < 1
+[Statistic] Total transmitted packets: 800/800
+
+Simulator with n=2 gen_period=25 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 792/800
+
+Simulator with n=2 gen_period=25 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 732/800
+
+Simulator with n=2 gen_period=50 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 400/400
+
+Simulator with n=2 gen_period=50 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 400/400
+
+Simulator with n=2 gen_period=50 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 400/400
+
+Simulator with n=2 gen_period=50 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 400/400
+
+Simulator with n=2 gen_period=50 packet_size=1 p=0.2:
+n * p < 1
+[Statistic] Total transmitted packets: 400/400
+
+Simulator with n=2 gen_period=50 packet_size=1 p=0.1:
+n * p < 1
+[Statistic] Total transmitted packets: 400/400
+
+Simulator with n=2 gen_period=50 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 398/400
+
+Simulator with n=2 gen_period=50 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 350/400
+
+Simulator with n=5 gen_period=5 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 8551/10000
+
+Simulator with n=5 gen_period=5 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 8831/10000
+
+Simulator with n=5 gen_period=5 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9280/10000
+
+Simulator with n=5 gen_period=5 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9394/10000
+
+Simulator with n=5 gen_period=5 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9497/10000
+
+Simulator with n=5 gen_period=5 packet_size=1 p=0.1:
+n * p < 1
+[Statistic] Total transmitted packets: 9489/10000
+
+Simulator with n=5 gen_period=5 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 8854/10000
+
+Simulator with n=5 gen_period=5 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 6380/10000
+
+Simulator with n=5 gen_period=10 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 4817/5000
+
+Simulator with n=5 gen_period=10 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 4906/5000
+
+Simulator with n=5 gen_period=10 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 4955/5000
+
+Simulator with n=5 gen_period=10 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 4985/5000
+
+Simulator with n=5 gen_period=10 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 4995/5000
+
+Simulator with n=5 gen_period=10 packet_size=1 p=0.1:
+n * p < 1
+[Statistic] Total transmitted packets: 4989/5000
+
+Simulator with n=5 gen_period=10 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 4933/5000
+
+Simulator with n=5 gen_period=10 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 4291/5000
+
+Simulator with n=5 gen_period=25 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 2000/2000
+
+Simulator with n=5 gen_period=25 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 1988/2000
+
+Simulator with n=5 gen_period=25 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 2000/2000
+
+Simulator with n=5 gen_period=25 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 2000/2000
+
+Simulator with n=5 gen_period=25 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 2000/2000
+
+Simulator with n=5 gen_period=25 packet_size=1 p=0.1:
+n * p < 1
+[Statistic] Total transmitted packets: 1999/2000
+
+Simulator with n=5 gen_period=25 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 1989/2000
+
+Simulator with n=5 gen_period=25 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 1801/2000
+
+Simulator with n=5 gen_period=50 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 999/1000
+
+Simulator with n=5 gen_period=50 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 1000/1000
+
+Simulator with n=5 gen_period=50 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 998/1000
+
+Simulator with n=5 gen_period=50 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 1000/1000
+
+Simulator with n=5 gen_period=50 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 1000/1000
+
+Simulator with n=5 gen_period=50 packet_size=1 p=0.1:
+n * p < 1
+[Statistic] Total transmitted packets: 1000/1000
+
+Simulator with n=5 gen_period=50 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 994/1000
+
+Simulator with n=5 gen_period=50 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 825/1000
+
+Simulator with n=10 gen_period=5 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9303/20000
+
+Simulator with n=10 gen_period=5 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9644/20000
+
+Simulator with n=10 gen_period=5 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9670/20000
+
+Simulator with n=10 gen_period=5 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9785/20000
+
+Simulator with n=10 gen_period=5 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9881/20000
+
+Simulator with n=10 gen_period=5 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9844/20000
+
+Simulator with n=10 gen_period=5 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9660/20000
+
+Simulator with n=10 gen_period=5 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 8734/20000
+
+Simulator with n=10 gen_period=10 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 8134/10000
+
+Simulator with n=10 gen_period=10 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 8392/10000
+
+Simulator with n=10 gen_period=10 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 8849/10000
+
+Simulator with n=10 gen_period=10 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 8910/10000
+
+Simulator with n=10 gen_period=10 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9308/10000
+
+Simulator with n=10 gen_period=10 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9377/10000
+
+Simulator with n=10 gen_period=10 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 8698/10000
+
+Simulator with n=10 gen_period=10 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 6408/10000
+
+Simulator with n=10 gen_period=25 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 3901/4000
+
+Simulator with n=10 gen_period=25 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 3927/4000
+
+Simulator with n=10 gen_period=25 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 3933/4000
+
+Simulator with n=10 gen_period=25 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 3962/4000
+
+Simulator with n=10 gen_period=25 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 3973/4000
+
+Simulator with n=10 gen_period=25 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 3988/4000
+
+Simulator with n=10 gen_period=25 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 3898/4000
+
+Simulator with n=10 gen_period=25 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 3465/4000
+
+Simulator with n=10 gen_period=50 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 1991/2000
+
+Simulator with n=10 gen_period=50 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 1986/2000
+
+Simulator with n=10 gen_period=50 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 1994/2000
+
+Simulator with n=10 gen_period=50 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 1991/2000
+
+Simulator with n=10 gen_period=50 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 1994/2000
+
+Simulator with n=10 gen_period=50 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 1997/2000
+
+Simulator with n=10 gen_period=50 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 1978/2000
+
+Simulator with n=10 gen_period=50 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 1809/2000
+
+Simulator with n=20 gen_period=5 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9655/40000
+
+Simulator with n=20 gen_period=5 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9703/40000
+
+Simulator with n=20 gen_period=5 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9811/40000
+
+Simulator with n=20 gen_period=5 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9787/40000
+
+Simulator with n=20 gen_period=5 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9843/40000
+
+Simulator with n=20 gen_period=5 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9900/40000
+
+Simulator with n=20 gen_period=5 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9733/40000
+
+Simulator with n=20 gen_period=5 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 9196/40000
+
+Simulator with n=20 gen_period=10 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9268/20000
+
+Simulator with n=20 gen_period=10 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9358/20000
+
+Simulator with n=20 gen_period=10 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9544/20000
+
+Simulator with n=20 gen_period=10 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9501/20000
+
+Simulator with n=20 gen_period=10 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9639/20000
+
+Simulator with n=20 gen_period=10 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9724/20000
+
+Simulator with n=20 gen_period=10 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9587/20000
+
+Simulator with n=20 gen_period=10 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 8073/20000
+
+Simulator with n=20 gen_period=25 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 7164/8000
+
+Simulator with n=20 gen_period=25 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 7093/8000
+
+Simulator with n=20 gen_period=25 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 7208/8000
+
+Simulator with n=20 gen_period=25 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 7339/8000
+
+Simulator with n=20 gen_period=25 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 7595/8000
+
+Simulator with n=20 gen_period=25 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 7769/8000
+
+Simulator with n=20 gen_period=25 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 7559/8000
+
+Simulator with n=20 gen_period=25 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 5926/8000
+
+Simulator with n=20 gen_period=50 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 3919/4000
+
+Simulator with n=20 gen_period=50 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 3938/4000
+
+Simulator with n=20 gen_period=50 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 3919/4000
+
+Simulator with n=20 gen_period=50 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 3946/4000
+
+Simulator with n=20 gen_period=50 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 3947/4000
+
+Simulator with n=20 gen_period=50 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 3958/4000
+
+Simulator with n=20 gen_period=50 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 3949/4000
+
+Simulator with n=20 gen_period=50 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 3309/4000
+
+Simulator with n=30 gen_period=5 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9573/60000
+
+Simulator with n=30 gen_period=5 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9723/60000
+
+Simulator with n=30 gen_period=5 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9791/60000
+
+Simulator with n=30 gen_period=5 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9764/60000
+
+Simulator with n=30 gen_period=5 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9799/60000
+
+Simulator with n=30 gen_period=5 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9848/60000
+
+Simulator with n=30 gen_period=5 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9891/60000
+
+Simulator with n=30 gen_period=5 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 8855/60000
+
+Simulator with n=30 gen_period=10 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9296/30000
+
+Simulator with n=30 gen_period=10 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9507/30000
+
+Simulator with n=30 gen_period=10 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9654/30000
+
+Simulator with n=30 gen_period=10 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9537/30000
+
+Simulator with n=30 gen_period=10 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9629/30000
+
+Simulator with n=30 gen_period=10 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9723/30000
+
+Simulator with n=30 gen_period=10 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9714/30000
+
+Simulator with n=30 gen_period=10 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 8646/30000
+
+Simulator with n=30 gen_period=25 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 8332/12000
+
+Simulator with n=30 gen_period=25 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 8466/12000
+
+Simulator with n=30 gen_period=25 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 8576/12000
+
+Simulator with n=30 gen_period=25 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 8565/12000
+
+Simulator with n=30 gen_period=25 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 8709/12000
+
+Simulator with n=30 gen_period=25 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9038/12000
+
+Simulator with n=30 gen_period=25 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 8983/12000
+
+Simulator with n=30 gen_period=25 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 6982/12000
+
+Simulator with n=30 gen_period=50 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 5669/6000
+
+Simulator with n=30 gen_period=50 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 5547/6000
+
+Simulator with n=30 gen_period=50 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 5716/6000
+
+Simulator with n=30 gen_period=50 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 5686/6000
+
+Simulator with n=30 gen_period=50 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 5800/6000
+
+Simulator with n=30 gen_period=50 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 5834/6000
+
+Simulator with n=30 gen_period=50 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 5848/6000
+
+Simulator with n=30 gen_period=50 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 4716/6000
+
+Simulator with n=40 gen_period=5 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9747/80000
+
+Simulator with n=40 gen_period=5 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9791/80000
+
+Simulator with n=40 gen_period=5 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9794/80000
+
+Simulator with n=40 gen_period=5 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9793/80000
+
+Simulator with n=40 gen_period=5 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9756/80000
+
+Simulator with n=40 gen_period=5 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9792/80000
+
+Simulator with n=40 gen_period=5 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9886/80000
+
+Simulator with n=40 gen_period=5 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 9336/80000
+
+Simulator with n=40 gen_period=10 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9510/40000
+
+Simulator with n=40 gen_period=10 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9554/40000
+
+Simulator with n=40 gen_period=10 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9562/40000
+
+Simulator with n=40 gen_period=10 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9597/40000
+
+Simulator with n=40 gen_period=10 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9568/40000
+
+Simulator with n=40 gen_period=10 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9657/40000
+
+Simulator with n=40 gen_period=10 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9744/40000
+
+Simulator with n=40 gen_period=10 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 8809/40000
+
+Simulator with n=40 gen_period=25 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 8728/16000
+
+Simulator with n=40 gen_period=25 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 8854/16000
+
+Simulator with n=40 gen_period=25 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 8737/16000
+
+Simulator with n=40 gen_period=25 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 8787/16000
+
+Simulator with n=40 gen_period=25 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 8904/16000
+
+Simulator with n=40 gen_period=25 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9066/16000
+
+Simulator with n=40 gen_period=25 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9247/16000
+
+Simulator with n=40 gen_period=25 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 7552/16000
+
+Simulator with n=40 gen_period=50 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 7078/8000
+
+Simulator with n=40 gen_period=50 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 7018/8000
+
+Simulator with n=40 gen_period=50 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 6968/8000
+
+Simulator with n=40 gen_period=50 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 6971/8000
+
+Simulator with n=40 gen_period=50 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 7185/8000
+
+Simulator with n=40 gen_period=50 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 7227/8000
+
+Simulator with n=40 gen_period=50 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 7442/8000
+
+Simulator with n=40 gen_period=50 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 5672/8000
+
+Simulator with n=50 gen_period=5 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9790/100000
+
+Simulator with n=50 gen_period=5 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9782/100000
+
+Simulator with n=50 gen_period=5 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9754/100000
+
+Simulator with n=50 gen_period=5 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9789/100000
+
+Simulator with n=50 gen_period=5 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9777/100000
+
+Simulator with n=50 gen_period=5 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9813/100000
+
+Simulator with n=50 gen_period=5 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9865/100000
+
+Simulator with n=50 gen_period=5 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 9515/100000
+
+Simulator with n=50 gen_period=10 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 9569/50000
+
+Simulator with n=50 gen_period=10 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 9632/50000
+
+Simulator with n=50 gen_period=10 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 9615/50000
+
+Simulator with n=50 gen_period=10 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9541/50000
+
+Simulator with n=50 gen_period=10 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 9545/50000
+
+Simulator with n=50 gen_period=10 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 9618/50000
+
+Simulator with n=50 gen_period=10 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9782/50000
+
+Simulator with n=50 gen_period=10 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 9168/50000
+
+Simulator with n=50 gen_period=25 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 8937/20000
+
+Simulator with n=50 gen_period=25 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 8925/20000
+
+Simulator with n=50 gen_period=25 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 8938/20000
+
+Simulator with n=50 gen_period=25 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 9024/20000
+
+Simulator with n=50 gen_period=25 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 8893/20000
+
+Simulator with n=50 gen_period=25 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 8991/20000
+
+Simulator with n=50 gen_period=25 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 9515/20000
+
+Simulator with n=50 gen_period=25 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 8116/20000
+
+Simulator with n=50 gen_period=50 packet_size=1 p=1:
+n * p > 1
+[Statistic] Total transmitted packets: 7572/10000
+
+Simulator with n=50 gen_period=50 packet_size=1 p=0.9:
+n * p > 1
+[Statistic] Total transmitted packets: 7616/10000
+
+Simulator with n=50 gen_period=50 packet_size=1 p=0.75:
+n * p > 1
+[Statistic] Total transmitted packets: 7871/10000
+
+Simulator with n=50 gen_period=50 packet_size=1 p=0.5:
+n * p > 1
+[Statistic] Total transmitted packets: 7802/10000
+
+Simulator with n=50 gen_period=50 packet_size=1 p=0.2:
+n * p > 1
+[Statistic] Total transmitted packets: 7695/10000
+
+Simulator with n=50 gen_period=50 packet_size=1 p=0.1:
+n * p > 1
+[Statistic] Total transmitted packets: 7789/10000
+
+Simulator with n=50 gen_period=50 packet_size=1 p=0.01:
+n * p < 1
+[Statistic] Total transmitted packets: 8465/10000
+
+Simulator with n=50 gen_period=50 packet_size=1 p=0.001:
+n * p < 1
+[Statistic] Total transmitted packets: 6436/10000
+
