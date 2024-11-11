@@ -1,6 +1,7 @@
 import random
 import sys
 import itertools as it
+import pandas as pd
 
 DEBUG = False
 
@@ -163,6 +164,19 @@ REPS = 5
 
 with open('MAC_results.txt', 'w') as f:
 
+    results = {
+        "n": [],
+        "gen_period": [],
+        "ps": [],
+        "p": [],
+        "successful": [],
+        "total": [],
+    }
+
+    for n in range(100):
+        results.update({f"successful_{n}": []})
+        results.update({f"total_{n}": []})
+
     for (n, gen_period, ps, p) in it.product(N, GEN_PERIOD, PS, P):
 
         print(f"Simulator with n={n} gen_period={gen_period} packet_size={ps} p={p}...")
@@ -173,6 +187,7 @@ with open('MAC_results.txt', 'w') as f:
 
         avgs = dict([(i, { 'successful_packets': 0, 'total_packets': 0}) for i in range(n)])
 
+        # Run simulation
         for _ in range(REPS):
             s = Simulator([Node(i, ps, gen_period, 0, p) for i in range(n)], 1)
             s.run(time_steps)
@@ -188,6 +203,24 @@ with open('MAC_results.txt', 'w') as f:
         successful = sum([a['successful_packets'] for a in avgs.values()])
         total = sum([a['total_packets'] for a in avgs.values()])
 
+        # Add to dataframe results
+        for i in range(n):
+            results[f'successful_{i}'].append(avgs[i]['successful_packets'])
+            results[f'total_{i}'].append(avgs[i]['total_packets'])
+
+        for i in range(n, 100):
+            results[f'successful_{i}'].append(None)
+            results[f'total_{i}'].append(None)
+
+        results['n'].append(n)
+        results['gen_period'].append(gen_period)
+        results['ps'].append(ps)
+        results['p'].append(p)
+        results['successful'].append(successful)
+        results['total'].append(total)
+
         print(f"""[Statistic] Total transmitted packets: {successful}/{total} = {successful / total} channel utilization""", file=f)
         print()
         print(file=f)
+
+    pd.DataFrame(results).to_csv('MAC_results.csv')
