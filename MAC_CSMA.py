@@ -146,14 +146,6 @@ class Simulator:
 
         return False
 
-    def show_statistics(self, f):
-        # for n in self.nodes:
-        #     print(f'[Statistic][Node {n.id}] Successfully transmitted packets: {n.statistics['successful_packets']}/{n.statistics['total_packets']}', file=f)
-
-        print(f"""[Statistic] Total transmitted packets: """
-              f"""{sum([n.statistics['successful_packets'] for n in self.nodes])}/"""
-              f"""{sum([n.statistics['total_packets'] for n in self.nodes])}""", file=f)
-
 time_steps = int(sys.argv[1])
 
 try:
@@ -162,17 +154,16 @@ try:
 except:
     pass
 
-N = [2, 5, 10, 20, 30, 40, 50]
+N = [2, 5, 10, 20, 30, 40, 50, 100]
 GEN_PERIOD = [5, 10, 25, 50]
 PS = [1]
 P = [1, 0.9, 0.75, 0.5, 0.2, 0.1, 0.01, 0.001]
 
+REPS = 5
+
 with open('MAC_results.txt', 'w') as f:
 
     for (n, gen_period, ps, p) in it.product(N, GEN_PERIOD, PS, P):
-
-        s = Simulator([Node(i, ps, gen_period, 0, p) for i in range(n)], 1)
-        s.run(time_steps)
 
         print(f"Simulator with n={n} gen_period={gen_period} packet_size={ps} p={p}...")
         print(f"Simulator with n={n} gen_period={gen_period} packet_size={ps} p={p}:", file=f)
@@ -180,7 +171,23 @@ with open('MAC_results.txt', 'w') as f:
         print(f"n * p {'>' if n * p >= 1 else '<'} 1")
         print(f"n * p {'>' if n * p >= 1 else '<'} 1", file=f)
 
-        s.show_statistics(f)
+        avgs = dict([(i, { 'successful_packets': 0, 'total_packets': 0}) for i in range(n)])
 
+        for _ in range(REPS):
+            s = Simulator([Node(i, ps, gen_period, 0, p) for i in range(n)], 1)
+            s.run(time_steps)
+
+            for i in range(n):
+                avgs[i]['successful_packets'] += s.nodes[i].statistics['successful_packets']
+                avgs[i]['total_packets'] += s.nodes[i].statistics['total_packets']
+
+        for i in range(n):
+            avgs[i]['successful_packets'] /= REPS
+            avgs[i]['total_packets'] /= REPS
+
+        successful = sum([a['successful_packets'] for a in avgs.values()])
+        total = sum([a['total_packets'] for a in avgs.values()])
+
+        print(f"""[Statistic] Total transmitted packets: {successful}/{total} = {successful / total} channel utilization""", file=f)
         print()
         print(file=f)
