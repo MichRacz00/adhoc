@@ -139,6 +139,66 @@ services:
         ipv4_address: 192.168.55.20
     ports:
     - 9100:9100
+  node11:
+    build: .
+    environment:
+      ALGORITHM: cluster
+      EMPTY: null
+      PID: 11
+      TOPOLOGY: topologies/cluster.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.55.21
+    ports:
+    - 9101:9101
+  node12:
+    build: .
+    environment:
+      ALGORITHM: cluster
+      EMPTY: null
+      PID: 12
+      TOPOLOGY: topologies/cluster.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.55.22
+    ports:
+    - 9102:9102
+  node13:
+    build: .
+    environment:
+      ALGORITHM: cluster
+      EMPTY: null
+      PID: 13
+      TOPOLOGY: topologies/cluster.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.55.23
+    ports:
+    - 9103:9103
+  node14:
+    build: .
+    environment:
+      ALGORITHM: cluster
+      EMPTY: null
+      PID: 14
+      TOPOLOGY: topologies/cluster.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.55.24
+    ports:
+    - 9104:9104
+  node15:
+    build: .
+    environment:
+      ALGORITHM: cluster
+      EMPTY: null
+      PID: 15
+      TOPOLOGY: topologies/cluster.yaml
+    networks:
+      vpcbr:
+        ipv4_address: 192.168.55.25
+    ports:
+    - 9105:9105
 version: '3.7'
 x-common-variables:
   EMPTY: null
