@@ -53,11 +53,11 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
     cluster_heads = []
     messages = []
 
-    topology = "many_ch"
+    topology = "cluster_dense"
 
     if topology == "cluster_dense":
         # Cluster heads for the cluster_dense topology
-        cluster_heads = [0, 8]
+        cluster_heads = [0, 7, 8]
         messages = [
             DataMessage(1, 9, "Testcase RR: 1 to 9"),
             DataMessage(5, 6, "Testcase RG: 5 to 6"),
