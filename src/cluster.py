@@ -53,7 +53,7 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
     cluster_heads = []
     messages = []
 
-    topology = "cluster_dense"
+    topology = "many_ch"
 
     if topology == "cluster_dense":
         # Cluster heads for the cluster_dense topology
@@ -85,6 +85,7 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
             DataMessage(0, 7, "This message should not arrive"),
             DataMessage(2, 12, "This message should not arrive"),
             DataMessage(14, 6, "This message should not arrive"),
+            DataMessage(2, 6, "This message should arrive"),
         ]
 
     elif topology == "cluster_string":
