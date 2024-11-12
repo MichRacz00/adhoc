@@ -33,18 +33,18 @@ if __name__ == '__main__':
             n['environment']['ALGORITHM'] = args.algorithm
             nodes[f'node{i}'] = n
 
-        connections = {
-            0: [1, 9, 7],
-            1: [0, 4, 5],
-            2: [3, 7, 9],
-            3: [2, 6, 7],
-            4: [1, 5, 8],
-            5: [1, 4, 6],
-            6: [3, 5, 8],
-            7: [0, 2, 3],
-            8: [4, 6, 9],
-            9: [0, 2, 8]
-        }
+        # connections = {
+        #     0: [1, 9, 7],
+        #     1: [0, 4, 5],
+        #     2: [3, 7, 9],
+        #     3: [2, 6, 7],
+        #     4: [1, 5, 8],
+        #     5: [1, 4, 6],
+        #     6: [3, 5, 8],
+        #     7: [0, 2, 3],
+        #     8: [4, 6, 9],
+        #     9: [0, 2, 8]
+        # }
 
         content['services'] = nodes
 
@@ -52,6 +52,6 @@ if __name__ == '__main__':
             yaml.safe_dump(content, f2)
             print(f'Output written to docker-compose.yml')
 
-        with open(args.topology_file, 'w') as f3:
-            yaml.safe_dump(connections, f3)
-            print(f'Output written to {args.topology_file}')
+        # with open(args.topology_file, 'w') as f3:
+        #     yaml.safe_dump(connections, f3)
+        #     print(f'Output written to {args.topology_file}')

@@ -1,6 +1,7 @@
+#!/bin/bash
 
-NUM_NODES=6
-python3 src/util_communication.py $NUM_NODES topologies/communication.yaml dolev
+NUM_NODES=11
+python3 src/run.py $NUM_NODES topologies/cluster.yaml cluster
 #python3 src/util.py $NUM_NODES topologies/election.yaml dolev
 docker-compose build
 docker-compose up
