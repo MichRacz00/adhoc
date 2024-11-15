@@ -10,6 +10,8 @@ Before running each test, selected topology must be copied
 into the cluster.yaml file. Additionaly, appropriate
 topology must be configured in src/cluster.py file on
 line 56. The test should be started by running run_cluster.sh
+Allow for up to 30 seconds for messages to arrive at their
+destinations.
 
 # Acnowledgments
 The framework on which this protocol has been implemented was taken
