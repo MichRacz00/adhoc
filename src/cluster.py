@@ -53,7 +53,7 @@ class ClusterHeadAlgorithm(DistributedAlgorithm):
     cluster_heads = []
     messages = []
 
-    topology = "cluster_dense"
+    topology = "cluster_string"
 
     if topology == "cluster_dense":
         # Cluster heads for the cluster_dense topology
